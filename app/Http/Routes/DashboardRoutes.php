@@ -66,8 +66,12 @@ class DashboardRoutes
 
                 $router->delete('groups/{component_group}/delete', 'ComponentController@deleteComponentGroupAction');
                 $router->post('groups/add', 'ComponentController@postAddComponentGroup');
+
+                $router->get('{component}/edit', [
+                    'as'   => 'component.edit',
+                    'uses' => 'ComponentController@showEditComponent',
+                ]);
                 $router->delete('{component}/delete', 'ComponentController@deleteComponentAction');
-                $router->get('{component}/edit', 'ComponentController@showEditComponent');
                 $router->post('{component}/edit', 'ComponentController@updateComponentAction');
             });
 
@@ -89,18 +93,23 @@ class DashboardRoutes
 
             // Scheduled Maintenance
             $router->group(['prefix' => 'schedule'], function ($router) {
-                $router->get('/', ['as' => 'schedule', 'uses' => 'ScheduleController@showIndex']);
+                $router->get('/', [
+                    'as'   => 'schedule',
+                    'uses' => 'ScheduleController@showIndex',
+                ]);
 
                 $router->get('add', [
                     'as'   => 'schedule.add',
                     'uses' => 'ScheduleController@showAddSchedule',
                 ]);
+
                 $router->post('add', 'ScheduleController@addScheduleAction');
 
                 $router->get('{incident}/edit', [
                     'as'   => 'schedule.edit',
                     'uses' => 'ScheduleController@showEditSchedule',
                 ]);
+
                 $router->post('{incident}/edit', 'ScheduleController@editScheduleAction');
 
                 $router->delete('{incident}/delete', [
