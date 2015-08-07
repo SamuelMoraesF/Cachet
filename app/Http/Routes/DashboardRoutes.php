@@ -40,35 +40,36 @@ class DashboardRoutes
             ]);
 
             // Components
-            $router->group(['prefix' => 'components'], function ($router) {
+            $router->group([
+                'as'     => 'components.',
+                'prefix' => 'components',
+            ], function ($router) {
                 $router->get('/', [
-                    'as'   => 'components',
+                    'as'   => 'index',
                     'uses' => 'ComponentController@showComponents',
                 ]);
                 $router->get('add', [
-                    'as'   => 'components.add',
+                    'as'   => 'add',
                     'uses' => 'ComponentController@showAddComponent',
                 ]);
                 $router->post('add', 'ComponentController@createComponentAction');
                 $router->get('groups', [
-                    'as'   => 'components.groups',
+                    'as'   => 'groups',
                     'uses' => 'ComponentController@showComponentGroups',
                 ]);
                 $router->get('groups/add', [
-                    'as'   => 'components.groups.add',
+                    'as'   => 'groups.add',
                     'uses' => 'ComponentController@showAddComponentGroup',
                 ]);
                 $router->get('groups/edit/{component_group}', [
-                    'as'   => 'components.groups.edit',
+                    'as'   => 'groups.edit',
                     'uses' => 'ComponentController@showEditComponentGroup',
                 ]);
                 $router->post('groups/edit/{component_group}', 'ComponentController@updateComponentGroupAction');
-
                 $router->delete('groups/{component_group}/delete', 'ComponentController@deleteComponentGroupAction');
                 $router->post('groups/add', 'ComponentController@postAddComponentGroup');
-
                 $router->get('{component}/edit', [
-                    'as'   => 'component.edit',
+                    'as'   => 'edit',
                     'uses' => 'ComponentController@showEditComponent',
                 ]);
                 $router->delete('{component}/delete', 'ComponentController@deleteComponentAction');
@@ -76,117 +77,123 @@ class DashboardRoutes
             });
 
             // Incidents
-            $router->group(['prefix' => 'incidents'], function ($router) {
+            $router->group(['prefix' => 'incidents', 'as' => 'incidents.'], function ($router) {
                 $router->get('/', [
-                    'as'   => 'incidents',
+                    'as'   => 'index',
                     'uses' => 'IncidentController@showIncidents',
                 ]);
                 $router->get('add', [
-                    'as'   => 'incidents.add',
+                    'as'   => 'add',
                     'uses' => 'IncidentController@showAddIncident',
                 ]);
                 $router->post('add', 'IncidentController@createIncidentAction');
                 $router->delete('{incident}/delete', 'IncidentController@deleteIncidentAction');
-                $router->get('{incident}/edit', 'IncidentController@showEditIncidentAction');
+                $router->get('{incident}/edit', [
+                    'as'   => 'edit',
+                    'uses' => 'IncidentController@showEditIncidentAction',
+                ]);
                 $router->post('{incident}/edit', 'IncidentController@editIncidentAction');
             });
 
             // Scheduled Maintenance
-            $router->group(['prefix' => 'schedule'], function ($router) {
+            $router->group([
+                'prefix' => 'schedule',
+                'as'     => 'schedule.',
+            ], function ($router) {
                 $router->get('/', [
-                    'as'   => 'schedule',
+                    'as'   => 'index',
                     'uses' => 'ScheduleController@showIndex',
                 ]);
-
                 $router->get('add', [
-                    'as'   => 'schedule.add',
+                    'as'   => 'add',
                     'uses' => 'ScheduleController@showAddSchedule',
                 ]);
-
                 $router->post('add', 'ScheduleController@addScheduleAction');
-
                 $router->get('{incident}/edit', [
-                    'as'   => 'schedule.edit',
+                    'as'   => 'edit',
                     'uses' => 'ScheduleController@showEditSchedule',
                 ]);
-
                 $router->post('{incident}/edit', 'ScheduleController@editScheduleAction');
-
                 $router->delete('{incident}/delete', [
-                    'as'   => 'schedule.delete',
+                    'as'   => 'delete',
                     'uses' => 'ScheduleController@deleteScheduleAction',
                 ]);
             });
 
             // Incident Templates
-            $router->group(['prefix' => 'templates'], function ($router) {
+            $router->group([
+                'as'     => 'templates.',
+                'prefix' => 'templates',
+            ], function ($router) {
                 $router->get('/', [
-                    'as'   => 'templates',
+                    'as'   => 'index',
                     'uses' => 'IncidentController@showTemplates',
                 ]);
-
                 $router->get('add', [
-                    'as'   => 'templates.add',
+                    'as'   => 'add',
                     'uses' => 'IncidentController@showAddIncidentTemplate',
                 ]);
                 $router->post('add', 'IncidentController@createIncidentTemplateAction');
-
-                $router->get('{incident_template}/edit', 'IncidentController@showEditTemplateAction');
+                $router->get('{incident_template}/edit', [
+                    'as'   => 'edit',
+                    'uses' => 'IncidentController@showEditTemplateAction',
+                ]);
                 $router->post('{incident_template}/edit', 'IncidentController@editTemplateAction');
                 $router->delete('{incident_template}/delete', 'IncidentController@deleteTemplateAction');
             });
 
             // Subscribers
-            $router->group(['prefix' => 'subscribers'], function ($router) {
+            $router->group([
+                'as'     => 'subscribers.',
+                'prefix' => 'subscribers',
+            ], function ($router) {
                 $router->get('/', [
-                    'as'   => 'subscribers',
+                    'as'   => 'index',
                     'uses' => 'SubscriberController@showSubscribers',
                 ]);
-
                 $router->get('add', [
-                    'as'   => 'subscribers.add',
+                    'as'   => 'add',
                     'uses' => 'SubscriberController@showAddSubscriber',
                 ]);
                 $router->post('add', 'SubscriberController@createSubscriberAction');
-
                 $router->delete('{subscriber}/delete', 'SubscriberController@deleteSubscriberAction');
             });
 
             // Metrics
-            $router->group(['prefix' => 'metrics'], function ($router) {
+            $router->group([
+                'as'     => 'metrics.',
+                'prefix' => 'metrics',
+            ], function ($router) {
                 $router->get('/', [
-                    'as'   => 'metrics',
+                    'as'   => 'index',
                     'uses' => 'MetricController@showMetrics',
                 ]);
-
                 $router->get('add', [
-                    'as'   => 'metrics.add',
+                    'as'   => 'add',
                     'uses' => 'MetricController@showAddMetric',
                 ]);
                 $router->post('add', 'MetricController@createMetricAction');
                 $router->delete('{metric}/delete', 'MetricController@deleteMetricAction');
-                $router->get('{metric}/edit', 'MetricController@showEditMetricAction');
+                $router->get('{metric}/edit', [
+                    'as'   => 'edit',
+                    'uses' => 'MetricController@showEditMetricAction',
+                ]);
                 $router->post('{metric}/edit', 'MetricController@editMetricAction');
             });
 
-            // Notifications
-            $router->group(['prefix' => 'notifications'], function ($router) {
-                $router->get('/', [
-                    'as'   => 'notifications',
-                    'uses' => 'DashboardController@showNotifications',
-                ]);
-            });
-
             // Team Members
-            $router->group(['prefix' => 'team'], function ($router) {
+            $router->group([
+                'as'     => 'team.',
+                'prefix' => 'team',
+            ], function ($router) {
                 $router->get('/', [
-                    'as'   => 'team',
+                    'as'   => 'index',
                     'uses' => 'TeamController@showTeamView',
                 ]);
 
                 $router->group(['middleware' => 'admin'], function ($router) {
                     $router->get('add', [
-                        'as'   => 'team.add',
+                        'as'   => 'add',
                         'uses' => 'TeamController@showAddTeamMemberView',
                     ]);
                     $router->get('{user}', 'TeamController@showTeamMemberView');
@@ -197,21 +204,24 @@ class DashboardRoutes
             });
 
             // Settings
-            $router->group(['prefix' => 'settings'], function ($router) {
+            $router->group([
+                'as'     => 'settings.',
+                'prefix' => 'settings',
+            ], function ($router) {
                 $router->get('setup', [
-                    'as'   => 'settings.setup',
+                    'as'   => 'setup',
                     'uses' => 'SettingsController@showSetupView',
                 ]);
                 $router->get('security', [
-                    'as'   => 'settings.security',
+                    'as'   => 'security',
                     'uses' => 'SettingsController@showSecurityView',
                 ]);
                 $router->get('theme', [
-                    'as'   => 'settings.theme',
+                    'as'   => 'theme',
                     'uses' => 'SettingsController@showThemeView',
                 ]);
                 $router->get('stylesheet', [
-                    'as'   => 'settings.stylesheet',
+                    'as'   => 'stylesheet',
                     'uses' => 'SettingsController@showStylesheetView',
                 ]);
                 $router->post('/', 'SettingsController@postSettings');
@@ -227,8 +237,10 @@ class DashboardRoutes
                 $router->get('{user}/api/regen', 'UserController@regenerateApiKey');
             });
 
-            // Internal API.
-            // This should only be used for making requests within the dashboard.
+            /*
+             * Internal API.
+             * This should only be used for making requests within the dashboard.
+             */
             $router->group(['prefix' => 'api'], function ($router) {
                 $router->get('incidents/templates', 'ApiController@getIncidentTemplate');
                 $router->post('components/groups/order', 'ApiController@postUpdateComponentGroupOrder');

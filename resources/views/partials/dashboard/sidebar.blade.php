@@ -32,39 +32,39 @@
                 </a>
             </li>
             <li {!! set_active('dashboard/incidents*') !!} {!! set_active('dashboard/schedule*') !!}>
-                <a href="{{ route('dashboard.incidents') }}">
+                <a href="{{ route('dashboard.incidents.index') }}">
                     <i class="icon ion-android-alert"></i>
                     <span>{{ trans('dashboard.incidents.incidents') }}</span>
                     <span class="label label-info">{{ $incident_count }}</span>
                 </a>
             </li>
             <li {!! set_active('dashboard/templates*') !!}>
-                <a href="{{ route('dashboard.templates') }}">
+                <a href="{{ route('dashboard.templates.index') }}">
                     <i class="icons ion-document-text"></i>
                     <span>{{ trans('dashboard.incidents.incident-templates') }}</span>
                 </a>
             </li>
             <li {!! set_active('dashboard/components*') !!}>
-                <a href="{{ route('dashboard.components') }}">
+                <a href="{{ route('dashboard.components.index') }}">
                     <i class="icons ion-outlet"></i>
                     <span>{{ trans('dashboard.components.components') }}</span>
                     <span class="label label-info">{{ $component_count }}</span>
                 </a>
             </li>
             <li {!! set_active('dashboard/team*') !!}>
-                <a href="{{ route('dashboard.team') }}">
+                <a href="{{ route('dashboard.team.index') }}">
                     <i class="icons ion-ios-people"></i>
                     <span>{{ trans('dashboard.team.team') }}</span>
                 </a>
             </li>
             <li {!! set_active('dashboard/metrics*') !!}>
-                <a href="{{ route('dashboard.metrics') }}">
+                <a href="{{ route('dashboard.metrics.index') }}">
                     <i class="icon ion-stats-bars"></i>
                     <span>{{ trans('dashboard.metrics.metrics') }}</span>
                 </a>
             </li>
             <li {!! set_active('dashboard/subscribers*') !!}>
-                <a href="{{ route('dashboard.subscribers') }}">
+                <a href="{{ route('dashboard.subscribers.index') }}">
                     <i class="icons ion-email"></i>
                     <span>{{ trans('dashboard.subscribers.subscribers') }}</span>
                 </a>
