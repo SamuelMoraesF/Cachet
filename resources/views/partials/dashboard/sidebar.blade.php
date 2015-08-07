@@ -12,7 +12,7 @@
                         <a role="menuitem" tabindex="-1" href="{{ url('dashboard/user') }}">{{ trans('dashboard.team.profile') }}</a>
                     </li>
                     <li role="presentation">
-                        <a role="menuitem" tabindex="-1" href="{{ route('logout') }}">{{ trans('dashboard.logout') }}</a>
+                        <a role="menuitem" tabindex="-1" href="{{ route('auth.logout') }}">{{ trans('dashboard.logout') }}</a>
                     </li>
                 </ul>
             </div>
@@ -26,7 +26,7 @@
         </div>
         <ul>
             <li {!! set_active('dashboard') !!}>
-                <a href="{{ route('dashboard') }}">
+                <a href="{{ route('dashboard.index') }}">
                     <i class="icon ion-speedometer"></i>
                     <span>{{ trans('dashboard.dashboard') }}</span>
                 </a>
@@ -87,7 +87,7 @@
                     <a href="{{ route('status-page') }}"><i class="icon ion-monitor"></i></a>
                 </li>
                 <li data-toggle="tooltip" data-placement="top" title="{{ trans('dashboard.logout') }}">
-                    <a href="{{ route('logout') }}"><i class="icon ion-log-out"></i></a>
+                    <a href="{{ route('auth.logout') }}"><i class="icon ion-log-out"></i></a>
                 </li>
             </ul>
         </div>

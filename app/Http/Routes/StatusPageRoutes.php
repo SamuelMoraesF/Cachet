@@ -13,6 +13,11 @@ namespace CachetHQ\Cachet\Http\Routes;
 
 use Illuminate\Contracts\Routing\Registrar;
 
+/**
+ * This is the statsu page routes class.
+ *
+ * @author James Brooks <james@alt-three.com>
+ */
 class StatusPageRoutes
 {
     /**

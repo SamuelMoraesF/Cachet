@@ -13,6 +13,11 @@ namespace CachetHQ\Cachet\Http\Routes;
 
 use Illuminate\Contracts\Routing\Registrar;
 
+/**
+ * This is the auth routes class.
+ *
+ * @author James Brooks <james@alt-three.com>
+ */
 class AuthRoutes
 {
     /**
@@ -22,9 +27,14 @@ class AuthRoutes
      */
     public function map(Registrar $router)
     {
-        $router->group(['prefix'         => 'auth'], function ($router) {
-            $router->group(['middleware' => 'app.hasSetting', 'setting' => 'app_name'], function ($router) {
-                // Login routes
+        $router->group([
+            'prefix' => 'auth',
+            'as'     => 'auth.',
+        ], function ($router) {
+            $router->group([
+                'middleware' => 'app.hasSetting',
+                'setting'    => 'app_name',
+            ], function ($router) {
                 $router->get('login', [
                     'middleware' => 'guest',
                     'as'         => 'login',
@@ -33,7 +43,6 @@ class AuthRoutes
 
                 $router->post('login', [
                     'middleware' => ['guest', 'csrf', 'throttling:10,10'],
-                    'as'         => 'login',
                     'uses'       => 'AuthController@postLogin',
                 ]);
 
@@ -46,12 +55,11 @@ class AuthRoutes
                 $router->post('2fa', 'AuthController@postTwoFactor');
             });
 
-            $router->group(['middleware' => 'auth'], function ($router) {
-                $router->get('logout', [
-                    'as'   => 'logout',
-                    'uses' => 'AuthController@logoutAction',
-                ]);
-            });
+            $router->get('logout', [
+                'as'         => 'logout',
+                'uses'       => 'AuthController@logoutAction',
+                'middleware' => 'auth',
+            ]);
         });
     }
 }
